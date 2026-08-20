@@ -100,7 +100,7 @@ func validate(node parser.Node, vars map[string]bool, funcs map[string]FuncSpec,
 		// always valid
 	case *parser.IdentNode:
 		if !vars[n.Name] {
-			r.Issues = append(r.Issues, Issue{
+			commitUndef(r, Issue{
 				Pos:      n.Pos(),
 				Message:  fmt.Sprintf("undefined variable %q", n.Name),
 				Severity: "error",
