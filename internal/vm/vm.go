@@ -112,7 +112,7 @@ func (vm *VM) Run(prog *compile.Program, vars map[string]float64) (float64, erro
 			}
 
 		case compile.OpPow:
-			if err := vm.binOp(func(a, b float64) (float64, error) { return math.Pow(a, b), nil }); err != nil {
+			if err := vm.binOp(func(a, b float64) (float64, error) { return applyPow(math.Pow(a, b)), nil }); err != nil {
 				return 0, err
 			}
 
