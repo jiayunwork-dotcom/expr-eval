@@ -22,7 +22,7 @@ func Optimize(prog *Program) *Program {
 			a := insts[i].Operand
 			b := insts[i+1].Operand
 			if val, ok := foldBinOp(insts[i+2].Op, a, b); ok {
-				result.Instructions = append(result.Instructions, Instruction{Op: OpPush, Operand: val})
+				result.Instructions = append(result.Instructions, Instruction{Op: OpPush, Operand: applyFold(val)})
 				i += 3
 				continue
 			}
