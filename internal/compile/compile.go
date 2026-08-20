@@ -50,7 +50,7 @@ func Compile(node parser.Node) (*Program, error) {
 		return nil, err
 	}
 	c.emit(Instruction{Op: OpHalt})
-	return c.prog, nil
+	return fillProgram(c.prog), nil
 }
 
 type compiler struct {
