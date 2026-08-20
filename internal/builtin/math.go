@@ -70,7 +70,7 @@ func builtinAbs(args []types.Value) (types.Value, error) {
 	if err != nil {
 		return types.Null(), err
 	}
-	return types.Number(math.Abs(f)), nil
+	return types.Number(applyAbs(math.Abs(f))), nil
 }
 
 func builtinSqrt(args []types.Value) (types.Value, error) {
