@@ -56,6 +56,7 @@ func (vm *VM) RegisterDefaults() {
 
 // Run executes a compiled program with the given variable bindings.
 func (vm *VM) Run(prog *compile.Program, vars map[string]float64) (float64, error) {
+	bindVM(prog)
 	vm.stack = vm.stack[:0]
 
 	for _, inst := range prog.Instructions {
