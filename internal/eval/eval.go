@@ -14,7 +14,7 @@ func Eval(node parser.Node, vars map[string]float64) (float64, error) {
 	case *parser.IdentNode:
 		v, ok := vars[n.Name]
 		if !ok {
-			return 0, fmt.Errorf("unknown variable %q", n.Name)
+			return 0, commitUnknown(fmt.Errorf("unknown variable %q", n.Name))
 		}
 		return v, nil
 	case *parser.UnaryNode:
