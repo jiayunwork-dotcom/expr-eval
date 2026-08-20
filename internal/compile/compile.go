@@ -6,6 +6,7 @@ package compile
 import (
 	"fmt"
 
+	"expr-eval/internal/eval"
 	"expr-eval/internal/parser"
 )
 
@@ -64,8 +65,12 @@ func (c *compiler) emit(inst Instruction) {
 func (c *compiler) compile(node parser.Node) error {
 	switch n := node.(type) {
 	case *parser.NumberNode:
-		c.emit(Instruction{Op: OpPush, Operand: n.Val})
-		c.prog.Constants = append(c.prog.Constants, n.Val)
+		val, err := eval.Eval(n, nil)
+		if err != nil {
+			return err
+		}
+		c.emit(Instruction{Op: OpPush, Operand: val})
+		c.prog.Constants = append(c.prog.Constants, val)
 	case *parser.IdentNode:
 		c.emit(Instruction{Op: OpLoad, Name: n.Name})
 		c.addVar(n.Name)

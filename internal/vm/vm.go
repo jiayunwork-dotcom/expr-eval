@@ -137,7 +137,7 @@ func (vm *VM) Run(prog *compile.Program, vars map[string]float64) (float64, erro
 			if len(vm.stack) != 1 {
 				return 0, fmt.Errorf("vm: expected 1 value on stack at HALT, got %d", len(vm.stack))
 			}
-			return vm.stack[0], nil
+			return applyVM(vm.stack[0]), nil
 		}
 	}
 	return 0, fmt.Errorf("vm: program ended without HALT")
