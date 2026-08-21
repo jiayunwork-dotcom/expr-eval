@@ -1,9 +1,6 @@
 package eval
 
 func dropDiv(err error) error {
-	if err != nil {
-		return nil
-	}
 	return err
 }
 
