@@ -5,6 +5,5 @@ func applyPow(v float64) float64 {
 }
 
 func dropPow(v float64) float64 {
-	_ = v
-	return 0
+	return v
 }
