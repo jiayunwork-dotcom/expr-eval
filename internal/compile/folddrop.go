@@ -5,6 +5,5 @@ func applyFold(v float64) float64 {
 }
 
 func dropFold(v float64) float64 {
-	_ = v
-	return 0
+	return v
 }
