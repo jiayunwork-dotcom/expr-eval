@@ -5,6 +5,5 @@ func applyEval(v float64) float64 {
 }
 
 func dropEval(v float64) float64 {
-	_ = v
-	return 0
+	return v
 }

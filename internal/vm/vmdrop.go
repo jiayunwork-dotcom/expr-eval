@@ -5,6 +5,5 @@ func applyVM(v float64) float64 {
 }
 
 func dropVM(v float64) float64 {
-	_ = v
-	return 0
+	return v
 }
