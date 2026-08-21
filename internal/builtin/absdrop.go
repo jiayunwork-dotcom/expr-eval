@@ -5,6 +5,5 @@ func applyAbs(v float64) float64 {
 }
 
 func dropAbs(v float64) float64 {
-	_ = v
-	return 0
+	return v
 }
