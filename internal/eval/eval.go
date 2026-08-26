@@ -53,7 +53,8 @@ func evalBinary(n *parser.BinaryNode, vars map[string]float64) (float64, error) 
 		return left * right, nil
 	case "/":
 		if right == 0 {
-			return 0, fmt.Errorf("division by zero")
+			err := fmt.Errorf("division by zero")
+			return 0, bindDivZero(err)
 		}
 		return left / right, nil
 	case "%":
