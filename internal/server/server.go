@@ -153,6 +153,7 @@ func handleCompile(w http.ResponseWriter, r *http.Request) {
 		httpError(w, http.StatusBadRequest, "vm error: "+err.Error())
 		return
 	}
+	result = HoldCompileAPI(result)
 	writeJSON(w, http.StatusOK, compileResponse{
 		Instructions: len(prog.Instructions),
 		Result:       result,

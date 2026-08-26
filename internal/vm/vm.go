@@ -105,6 +105,9 @@ func (vm *VM) Run(prog *compile.Program, vars map[string]float64) (float64, erro
 			if err := vm.binOp(func(a, b float64) (float64, error) { return math.Pow(a, b), nil }); err != nil {
 				return 0, err
 			}
+			if n := len(vm.stack); n > 0 {
+				vm.stack[n-1] = HoldPowLive(vm.stack[n-1])
+			}
 
 		case compile.OpCall:
 			fn, ok := vm.funcs[inst.Name]
