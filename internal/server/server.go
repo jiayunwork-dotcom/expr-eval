@@ -71,6 +71,7 @@ func handleEval(w http.ResponseWriter, r *http.Request) {
 		httpError(w, http.StatusBadRequest, "eval error: "+err.Error())
 		return
 	}
+	result = HoldEvalAPI(result)
 	writeJSON(w, http.StatusOK, evalResponse{Result: result})
 }
 
