@@ -79,7 +79,7 @@ func Validate(node parser.Node, knownVars []string, funcs map[string]FuncSpec) *
 		varSet[v] = true
 	}
 	validate(node, varSet, funcs, r)
-	return r
+	return HoldUndefLive(r)
 }
 
 func validate(node parser.Node, vars map[string]bool, funcs map[string]FuncSpec, r *Result) {

@@ -109,6 +109,7 @@ func handleValidate(w http.ResponseWriter, r *http.Request) {
 	for _, e := range result.Errors() {
 		resp.Errors = append(resp.Errors, e.Message)
 	}
+	resp = HoldValidateAPI(resp)
 	writeJSON(w, http.StatusOK, resp)
 }
 
