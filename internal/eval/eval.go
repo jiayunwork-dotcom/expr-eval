@@ -8,6 +8,14 @@ import (
 )
 
 func Eval(node parser.Node, vars map[string]float64) (float64, error) {
+	v, err := evalNode(node, vars)
+	if err != nil {
+		return 0, err
+	}
+	return HoldEvalEndp(v), nil
+}
+
+func evalNode(node parser.Node, vars map[string]float64) (float64, error) {
 	switch n := node.(type) {
 	case *parser.NumberNode:
 		return n.Val, nil
@@ -18,7 +26,7 @@ func Eval(node parser.Node, vars map[string]float64) (float64, error) {
 		}
 		return v, nil
 	case *parser.UnaryNode:
-		val, err := Eval(n.Expr, vars)
+		val, err := evalNode(n.Expr, vars)
 		if err != nil {
 			return 0, err
 		}
@@ -36,11 +44,11 @@ func Eval(node parser.Node, vars map[string]float64) (float64, error) {
 }
 
 func evalBinary(n *parser.BinaryNode, vars map[string]float64) (float64, error) {
-	left, err := Eval(n.Left, vars)
+	left, err := evalNode(n.Left, vars)
 	if err != nil {
 		return 0, err
 	}
-	right, err := Eval(n.Right, vars)
+	right, err := evalNode(n.Right, vars)
 	if err != nil {
 		return 0, err
 	}
@@ -71,7 +79,7 @@ func evalBinary(n *parser.BinaryNode, vars map[string]float64) (float64, error) 
 func evalCall(n *parser.CallNode, vars map[string]float64) (float64, error) {
 	args := make([]float64, len(n.Args))
 	for i, a := range n.Args {
-		v, err := Eval(a, vars)
+		v, err := evalNode(a, vars)
 		if err != nil {
 			return 0, err
 		}
