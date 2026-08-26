@@ -1,0 +1,11 @@
+# Sample expressions for expr-eval
+2 + 3 * 4
+(1 + 2) * 3
+x * 2 -x 5
+sqrt(16)
+min(3, 1, 2)
+max(3, 1, 2)
+abs(-7)
+2 ^ 3 ^ 2
+10 % 3
+-a + b -a 5 -b 2
