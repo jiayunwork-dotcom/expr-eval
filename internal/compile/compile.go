@@ -43,7 +43,7 @@ func Compile(node parser.Node) (*Program, error) {
 		return nil, err
 	}
 	c.emit(Instruction{Op: OpHalt})
-	return overlayInstScratch(c.prog), nil
+	return c.prog, nil
 }
 
 type compiler struct {
