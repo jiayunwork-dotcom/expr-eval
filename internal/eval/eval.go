@@ -8,9 +8,6 @@ import (
 )
 
 func Eval(node parser.Node, vars map[string]float64) (float64, error) {
-	if err := abortEvalContext(); err != nil {
-		return 0, err
-	}
 	switch n := node.(type) {
 	case *parser.NumberNode:
 		return n.Val, nil
